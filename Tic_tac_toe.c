@@ -1,6 +1,105 @@
 #include <stdio.h>
 #include <ctype.h>
 
+void swap();
+// Function to perform bubble sort on a 1D integer array
+void bubbleSort();
+void removeElement();
+// Function to compare two arrays for equality
+int compareArrays();
+// Function to check if a 1D array is present in a 2D array
+int is1DArrayIn2DArray() ;
+int Determine_similar();
+int Win_or_not();
+void Scafold();
+
+
+int main()
+{
+    
+    
+    int x_coordinate;
+    int y_coordinate;
+    int final_loc;
+    
+    int player_pos[8] = {-1, -2, -1, -2, -1 ,-2 ,-1 ,-2};
+    
+    for (int i = 0; i < 8; i++)
+    {   
+        int index = i;
+        int round = i/2; 
+        printf("round: %d \n", round+1);
+        if (i % 2 == 0)
+        {
+            printf("\n Player 1's turn (O): ");
+        }
+        else
+        {
+            printf("\n Player 2's turn (X): ");
+        }
+
+
+        //int invalid_pos_result;
+        //int player1_arr[4];
+        //int player2_arr[4];
+        //int size;
+        //int size1_2;
+
+        //do 
+        //{
+        printf("\n enter x coordinate: ");
+        scanf(" %d", &x_coordinate);
+        //printf("%d",x_coordinate);
+
+        printf("\n enter y coordinate: ");
+        scanf(" %d", &y_coordinate);
+        //printf("%d",y_coordinate);
+
+        final_loc = x_coordinate*10 + y_coordinate*2;
+        player_pos[i] = final_loc;
+                
+
+        Scafold(player_pos, index);
+
+        int player1_arr[4] = {0,0,0,0};
+        int player2_arr[4] = {0,0,0,0};
+        int size = sizeof(player1_arr) / sizeof(player1_arr[0]);
+        int size1_2 = sizeof(player2_arr) / sizeof(player2_arr[0]);
+
+        //invalid_pos_result = Determin_invalid_pos(player_pos, player1_arr, player2_arr,  size, size1_2);
+
+        //} while (invalid_pos_result == 1);
+
+        
+
+        int Who_wins = Win_or_not(player_pos, player1_arr, player2_arr, size, size1_2, round);
+        
+        if (Who_wins == 1)
+        {
+            printf("\nplayer 1 wins! ");
+            break;
+        }
+        else if (Who_wins == 2)
+        {
+            printf("\nplayer 2 wins! ");
+            break;
+        }
+        else if (Who_wins == 0 && i == 7)
+        {   
+            printf("\nIt is a tie !");
+        }
+        else
+        {
+            continue;
+        }
+        
+   
+    }
+
+
+    return 0;
+}
+
 void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
@@ -273,90 +372,3 @@ void Scafold(int player_pos[], int index)
 
 
 }
-
-int main()
-{
-    
-    
-    int x_coordinate;
-    int y_coordinate;
-    int final_loc;
-    
-    int player_pos[8] = {-1, -2, -1, -2, -1 ,-2 ,-1 ,-2};
-    
-    for (int i = 0; i < 8; i++)
-    {   
-        int index = i;
-        int round = i/2; 
-        printf("round: %d \n", round+1);
-        if (i % 2 == 0)
-        {
-            printf("\n Player 1's turn (O): ");
-        }
-        else
-        {
-            printf("\n Player 2's turn (X): ");
-        }
-
-
-        //int invalid_pos_result;
-        //int player1_arr[4];
-        //int player2_arr[4];
-        //int size;
-        //int size1_2;
-
-        //do 
-        //{
-        printf("\n enter x coordinate: ");
-        scanf(" %d", &x_coordinate);
-        //printf("%d",x_coordinate);
-
-        printf("\n enter y coordinate: ");
-        scanf(" %d", &y_coordinate);
-        //printf("%d",y_coordinate);
-
-        final_loc = x_coordinate*10 + y_coordinate*2;
-        player_pos[i] = final_loc;
-                
-
-        Scafold(player_pos, index);
-
-        int player1_arr[4] = {0,0,0,0};
-        int player2_arr[4] = {0,0,0,0};
-        int size = sizeof(player1_arr) / sizeof(player1_arr[0]);
-        int size1_2 = sizeof(player2_arr) / sizeof(player2_arr[0]);
-
-        //invalid_pos_result = Determin_invalid_pos(player_pos, player1_arr, player2_arr,  size, size1_2);
-
-        //} while (invalid_pos_result == 1);
-
-        
-
-        int Who_wins = Win_or_not(player_pos, player1_arr, player2_arr, size, size1_2, round);
-        
-        if (Who_wins == 1)
-        {
-            printf("\nplayer 1 wins! ");
-            break;
-        }
-        else if (Who_wins == 2)
-        {
-            printf("\nplayer 2 wins! ");
-            break;
-        }
-        else if (Who_wins == 0 && i == 7)
-        {   
-            printf("\nIt is a tie !");
-        }
-        else
-        {
-            continue;
-        }
-        
-   
-    }
-
-
-    return 0;
-}
-
